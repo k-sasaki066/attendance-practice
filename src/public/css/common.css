@@ -1,0 +1,56 @@
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+body {
+    height: 100vh;
+}
+
+main {
+    height: 88%;
+    background-color: #ddd;
+}
+
+
+.header {
+    height: 7%;
+}
+
+.header__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+}
+
+.header-nav__list {
+    display: flex;
+}
+
+.header-nav__item:not(:last-child) {
+    margin-right: 20px;
+}
+
+.header-nav__link {
+    color: #000;
+}
+
+.footer {
+    height: 5%;
+}
+
+.footer__copylight {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
