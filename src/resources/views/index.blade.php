@@ -7,7 +7,7 @@
 @section('content')
 <div class="attendance-header">
     <p class="attendance-header__title">
-        お疲れ様です！！
+        {{ Auth::user()->name }}さんお疲れ様です！！
     </p>
 </div>
 <div class="attendance-form">
