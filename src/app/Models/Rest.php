@@ -14,4 +14,9 @@ class Rest extends Model
         'end',
         'total'
     ];
+
+    public function attendance()
+    {
+        return $this->belongsTo(Attendance::class);
+    }
 }
