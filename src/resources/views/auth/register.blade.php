@@ -20,6 +20,7 @@
             <span class="error-massage__text">{{ $message }}</span>
         </div>
         @enderror
+
         <div class="register-form__item">
             <input class="register-form__item-input"
             type="email" name="email" value="{{ old('email') }}" placeholder="メールアドレス">
@@ -29,15 +30,17 @@
             <span class="error-massage__text">{{ $message }}</span>
         </div>
         @enderror
+
         <div class="register-form__item">
             <input class="register-form__item-input"
-            type="password" name="password" placeholder="パスワード">
+            type="password" name="password" placeholder="パスワード8文字以上">
         </div>
         @error('password')
         <div class="register__error-massage">
             <span class="error-massage__text">{{ $message }}</span>
         </div>
         @enderror
+
         <div class="register-form__item">
             <input class="register-form__item-input"
             type="password" name="password_confirmation" value="" placeholder="確認用パスワード">

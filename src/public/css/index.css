@@ -1,3 +1,8 @@
+.login__message {
+    background-color: rgb(116, 234, 153);
+    padding: 10px;
+}
+
 .attendance-header {
     padding: 30px 0;
 }

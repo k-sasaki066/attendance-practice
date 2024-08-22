@@ -7,11 +7,7 @@
 @section('content')
 @if(session('message'))
 <div class="login__alert">
-    <div class="login__alert--danger">
-        <ul>
-            <li>{{ session('message') }}</li>
-        </ul>
-    </div>
+    {{ session('message') }}
 </div>
 @endif
 
