@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+@if(session('message'))
+<div class="login__message">
+    {{ session('message') }}
+</div>
+@endif
 <div class="attendance-header">
     <p class="attendance-header__title">
         {{ Auth::user()->name }}さんお疲れ様です！！

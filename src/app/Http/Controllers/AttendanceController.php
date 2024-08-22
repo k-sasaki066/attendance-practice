@@ -79,7 +79,7 @@ class AttendanceController extends Controller
             $attendance->end = $now_time;
             $status = 1;
         }
-        
+
         $user = User::find($user_id);
         $user->status = $status;
         // dd($user);
