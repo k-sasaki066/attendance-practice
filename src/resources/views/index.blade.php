@@ -11,9 +11,15 @@
 </div>
 @endif
 <div class="attendance-header">
+    @if($status == 3)
     <p class="attendance-header__title">
-        {{ Auth::user()->name }}さんお疲れ様です！！
+        本日もお疲れ様でした。明日もよろしくお願いします。
     </p>
+    @else
+    <p class="attendance-header__title">
+        {{ Auth::user()->name }}さんお疲れ様です！
+    </p>
+    @endif
 </div>
 <div class="attendance-form">
     <form class="attendance-form__group"
