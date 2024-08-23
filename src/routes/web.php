@@ -15,13 +15,17 @@ use App\Http\Controllers\AuthenticatedSessionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::middleware('guest')->group(function() {
+    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 });
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 Route::middleware('auth')->group(function() {
     Route::get('/', [AttendanceController::class, 'index']);
     Route::post('/attendance', [AttendanceController::class, 'create']);
+    Route::get('/user', [AttendanceController::class, 'indexUser']);
 });
 

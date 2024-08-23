@@ -88,4 +88,11 @@ class AttendanceController extends Controller
 
         return redirect('/')->with('status',$status);
     }
+
+    public function indexUser() {
+        $list_date = Carbon::now()->format('Y-m-d');
+        $users = User::paginate(5);
+        // dd($list_date);
+        return view('attendance_user', compact('users', 'list_date'));
+    }
 }
