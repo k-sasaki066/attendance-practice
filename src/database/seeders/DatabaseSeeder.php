@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Attendance;
+use App\Models\Rest;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserTableSeeder::class);
+        $this->call(AttendanceTableSeeder::class);
+        $this->call(RestTableSeeder::class);
     }
 }

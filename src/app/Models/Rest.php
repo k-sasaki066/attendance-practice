@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Rest extends Model
 {
@@ -12,7 +13,8 @@ class Rest extends Model
     protected $fillable = [
         'start',
         'end',
-        'total'
+        'total',
+        'attendance_id',
     ];
 
     public function attendance()

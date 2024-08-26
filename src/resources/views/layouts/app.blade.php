@@ -20,7 +20,7 @@
                     <!-- <li class="header-nav__item"><a href="/" class="header-nav__link">ホーム</a></li> -->
                     <li class="header-nav__item"><a href="" class="header-nav__link">Date一覧</a></li>
                     <li class="header-nav__item"><a href="/user" class="header-nav__link">User一覧</a></li>
-                    <li class="header-nav__item"><a href="" class="header-nav__link">勤怠表</a></li>
+                    <li class="header-nav__item"><a href="/work" class="header-nav__link">勤怠表</a></li>
                     <li class="header-nav__item">
                         <form action="/logout" method="post">
                             @csrf
