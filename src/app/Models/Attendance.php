@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Attendance extends Model
 {
@@ -13,7 +15,8 @@ class Attendance extends Model
         'date',
         'start',
         'end',
-        'total'
+        'total',
+        'user_id',
     ];
 
     public function user()
@@ -25,4 +28,5 @@ class Attendance extends Model
     {
         return $this->hasMany(Rest::class);
     }
+
 }

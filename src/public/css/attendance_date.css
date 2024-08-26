@@ -1,0 +1,35 @@
+.user-list {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.user-list__header {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.user-list__date {
+    font-size: 20px;
+}
+
+.user-list__table {
+    width: 100%;
+}
+
+.user-list__title {
+    padding: 20px;
+    border-top: 1px solid #8c8888;
+    text-align: left;
+}
+
+.user-list__item {
+    width: 20%;
+    padding: 20px;
+    border-top: 1px solid #8c8888;
+}
+
+svg.w-5.h-5 {
+    width: 30px;
+    height: 30px;
+}
