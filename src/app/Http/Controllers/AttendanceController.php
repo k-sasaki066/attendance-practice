@@ -59,7 +59,9 @@ class AttendanceController extends Controller
             ->where('date', $now_date)
             ->first();
 
-            $attendance->fill(['end'=>$now_time]);
+            $attendance->fill([
+                'end'=>$now_time,
+            ]);
             $status = 3;
             // dd($attendance);
         }
@@ -103,85 +105,74 @@ class AttendanceController extends Controller
     }
 
     //勤怠表表示
-    //テーブルを結合して今日の日付を表示
     public function indexWork() {
+        //テーブル結合して休憩時間と勤務時間それぞれの差分を計算
         $list_date = Carbon::now()->format('Y-m-d');
-        $users = DB::table('users')
-            ->join('attendances', 'users.id', '=', 'attendances.user_id')
+        $users = User::join('attendances', 'users.id', '=', 'attendances.user_id')
             ->leftJoin('rests', 'attendances.id', '=', 'rests.attendance_id')
             ->select(
-                'users.id',
-                'users.name',
-                'users.status',
-                'attendances.date',
+                'name',
+                'date',
                 'attendances.start as start_work',
                 'attendances.end as end_work',
-                'rests.start',
-                'rests.end',
-                DB::raw('SUM(TIME_TO_SEC(TIMEDIFF(rests.end, rests.start))) as rest_time'),
-                DB::raw('TIMEDIFF(attendances.end, attendances.start) as work_time'),
+            )
+            ->selectRaw(
+                'SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rests.end,rests.start)))) as rest_time'
+            )
+            ->selectRaw(
+                'TIMEDIFF(attendances.end, attendances.start) as work_time'
             )
             ->groupBy(
-                'id',
                 'name',
-                'status',
                 'date',
                 'start_work',
                 'end_work',
-                'start',
-                'end',
             )
-            ->where('date', $list_date)
+            ->whereDate('date', $list_date)
             ->paginate(5);
         // dd($users);
         return view('attendance_date',compact('users', 'list_date'));
     }
 
-    // 日付別表示
+    // 日付検索
     public function indexDate(Request $request) {
         // dd($request);
-        $list_date = new Carbon($request->list_date);
-        
+        $date = Carbon::parse($request->list_date);
+
         if($request->has('prevDate')) {
-            $list_date -> subDay();
-            // dd($list_date);
+            $list_date = $date->copy()->subDay()->format('Y-m-d');
         }
 
         if($request->has('nextDate')) {
-            $list_date -> addDay();
-            // dd($list_date);
+            $list_date = $date->copy()->addDay()->format('Y-m-d');
         }
 
-        $users =  DB::table('users')
-            ->join('attendances', 'users.id', '=', 'attendances.user_id')
+        $users = User::join('attendances', 'users.id', '=', 'attendances.user_id')
             ->leftJoin('rests', 'attendances.id', '=', 'rests.attendance_id')
             ->select(
-                'users.id',
-                'users.name',
-                'users.status',
-                'attendances.date',
+                'name',
+                'date',
                 'attendances.start as start_work',
                 'attendances.end as end_work',
-                'rests.start',
-                'rests.end',
-                DB::raw('TIMEDIFF(rests.end, rests.start) as rest_time'),
-                DB::raw('TIMEDIFF(attendances.end, attendances.start) as work_time'),
+            )
+            ->selectRaw(
+                'SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rests.end,rests.start)))) as rest_time'
+            )
+            ->selectRaw(
+                'TIMEDIFF(attendances.end, attendances.start) as work_time'
             )
             ->groupBy(
-                'id',
                 'name',
-                'status',
                 'date',
                 'start_work',
                 'end_work',
-                'start',
-                'end',
             )
-            ->where('date', $list_date)
-            ->paginate(5);
+            ->whereDate('date', $list_date)
+            // dd($users);
+            ->Paginate(5);
         // dd($users);
 
-        return view('attendance_date',compact('users', 'list_date'));
+        return view('attendance_date', compact('users', 'list_date'));
 
     }
 }

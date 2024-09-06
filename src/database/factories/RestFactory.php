@@ -19,7 +19,7 @@ class RestFactory extends Factory
         return [
             'start' => $dummy_date->format('Y-m-d H:i:s'),
             'end' => $dummy_date->modify('+1 hour')->format('Y-m-d H:i:s'),
-            'attendance_id' =>$this->faker->numberBetween(1,15)
+            'attendance_id' =>$this->faker->numberBetween(1,10)
             ,
         ];
     }

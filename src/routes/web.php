@@ -28,6 +28,6 @@ Route::middleware('auth')->group(function() {
     Route::post('/attendance', [AttendanceController::class, 'create']);
     Route::get('/user', [AttendanceController::class, 'indexUser']);
     Route::get('/work', [AttendanceController::class, 'indexWork']);
-    Route::post('/work',[AttendanceController::class, 'indexDate']);
+    Route::get('/work/date',[AttendanceController::class, 'indexDate']);
 });
 
